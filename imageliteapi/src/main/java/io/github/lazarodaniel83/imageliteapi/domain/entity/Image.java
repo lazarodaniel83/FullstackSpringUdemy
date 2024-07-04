@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table
 @EntityListeners(AuditingEntityListener.class)
@@ -41,5 +42,8 @@ public class Image {
     @Lob
     private byte[] file;
 
+    public String getFileName(){
+        return getName().concat(".").concat(getExtension().name());
+    }
 
 }
