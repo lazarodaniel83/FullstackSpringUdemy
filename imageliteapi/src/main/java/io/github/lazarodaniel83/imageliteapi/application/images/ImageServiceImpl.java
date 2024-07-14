@@ -1,12 +1,14 @@
 package io.github.lazarodaniel83.imageliteapi.application.images;
 
 import io.github.lazarodaniel83.imageliteapi.domain.entity.Image;
+import io.github.lazarodaniel83.imageliteapi.domain.enums.ImageExtension;
 import io.github.lazarodaniel83.imageliteapi.domain.service.ImageService;
 import io.github.lazarodaniel83.imageliteapi.infra.repository.ImageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,4 +27,10 @@ public class ImageServiceImpl implements ImageService {
     public Optional<Image> getById(String id) {
         return repository.findById(id);
     }
+
+    @Override
+    public List<Image> search(ImageExtension extension, String query) {
+        return repository.findExtensioAndNameOrTagsLike(extension,query);
+    }
+
 }
