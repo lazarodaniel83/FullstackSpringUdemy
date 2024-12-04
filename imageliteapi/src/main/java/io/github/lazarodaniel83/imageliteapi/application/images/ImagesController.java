@@ -65,7 +65,9 @@ public class ImagesController {
     @GetMapping
     public ResponseEntity<List<ImageDTO>> search(
             @RequestParam(value = "extension", required = false,defaultValue = " ") String extension,
-            @RequestParam(value = "query",required = false) String query){
+            @RequestParam(value = "query",required = false) String query) throws InterruptedException {
+
+        Thread.sleep(3000L);
 
         var result = service.search(ImageExtension.ofName(extension), query);
 
